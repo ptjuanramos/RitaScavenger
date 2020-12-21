@@ -1,0 +1,39 @@
+﻿@using Scavenger.Christmas.Ritas.Web.Models
+@model Riddle
+@{
+    ViewData["Title"] = "Home";
+    bool? isMultipleAnswer = (TempData["IsMultipleAnswer"] as bool?);
+}
+
+<div class="wrong-answer">
+    @TempData["ErrorMessage"]
+</div>
+
+<form asp-action="Answer" method="post">
+    <input hidden asp-for="Number" />
+    <div class="login-box">
+        <h1>Adivinha nº @TempData["RiddleNumber"]</h1>
+        @if (isMultipleAnswer.GetValueOrDefault() && Model.MultipleRiddleAnswer != null)
+        {
+            @foreach (var key in Model.MultipleRiddleAnswer.Answers.Keys)
+            {
+                <div class="textbox">
+                    <i class="fas fa-lock"></i>
+                    @key:  <input asp-for="MultipleRiddleAnswer.Answers[key]" />
+                </div>
+            }
+        }
+        else
+        {
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <input asp-for="SingleRiddleAnswer.Answer" type="text" placeholder="Resposta">
+            </div>
+        }
+        <input type="submit" class="btn" value="Responder">
+    </div>
+</form>
+
+
+
+
