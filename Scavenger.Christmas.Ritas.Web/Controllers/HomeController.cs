@@ -167,8 +167,8 @@ namespace Scavenger.Christmas.Ritas.Web
             char space = ' ';
             char empty = '\0';
 
-            string str1WithoutSlash = str1.Replace(slash, empty).Replace(space, empty);
-            string str2WithoutSlash = str2.Replace(slash, empty).Replace(space, empty);
+            string str1WithoutSlash = str1?.Replace(slash, empty).Replace(space, empty);
+            string str2WithoutSlash = str2?.Replace(slash, empty).Replace(space, empty);
 
             return str1WithoutSlash == str2WithoutSlash;
         }
